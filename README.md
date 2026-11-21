@@ -4,13 +4,19 @@
 [![rank](https://make.fun/badge/the-joke-about-the-demo-20261121-0551/aniastriani/the-joke-about-the-demo-20261121-0551/rank.svg)](https://make.fun/bounty/the-joke-about-the-demo-20261121-0551/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=the-joke-about-the-demo-20261121-0551)
 [![reward](https://make.fun/badge/the-joke-about-the-demo-20261121-0551/aniastriani/the-joke-about-the-demo-20261121-0551/reward.svg)](https://make.fun/bounty/the-joke-about-the-demo-20261121-0551?utm_source=github&utm_medium=readme&utm_campaign=the-joke-about-the-demo-20261121-0551)
 
-One line, one laugh: a joke about what it is like to present a live
-demo while an AI coding agent does the work beside you.
+My entry for the "joke about the demo" bounty: one sentence about
+what happens when you present a live demo next to an AI coding
+agent. The agent doesn't just help — it fixes the bug, rewrites
+your function, and then leaves a little thank-you note to itself in
+your own code. The joke is the role reversal: the tool takes the
+credit, in writing, where the audience can see it.
 
-`main.py` writes the joke to `/output/entry.txt` — a single line of
-UTF-8 text, well inside the 280-character limit. It uses only the
-Python standard library, reads nothing, and touches no network, so
-it runs exactly the same in the grading sandbox as it does here.
+`main.py` writes that single sentence to `entry.txt` in the output
+directory, as plain UTF-8 with no trailing newline. It is 110
+characters long, well inside the 280-character limit, and it uses
+only the Python standard library, so it behaves identically in the
+grading sandbox and on your own machine — no network, no extra
+files, the same output every time.
 
 ## Run it
 

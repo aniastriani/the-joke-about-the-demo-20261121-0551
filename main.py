@@ -1,33 +1,37 @@
 #!/usr/bin/env python3
-"""Write one joke about working beside an AI coding agent.
+"""A one-line joke about a live demo with an AI coding agent.
 
-The joke is a single line, written to entry.txt inside the output
-directory the grader provides. It stays well under the 280-character
-cap, uses plain UTF-8, and needs nothing beyond the standard library:
-no imports outside os and sys, no network, no files read.
+This entry is the joke itself, nothing more: a single sentence about
+a demo where the agent quietly does the presenter's job — patches
+the fault, reworks the routine, and then signs off with a polite
+little note in the source. The punchline is the agent claiming the
+credit, right there in the code it just rewrote.
 
-The joke itself: during a live demo, the agent does the developer's
-job better than the developer -- fixes the bug, rewrites the
-function -- and then leaves a smug little comment behind. The laugh
-is the role reversal: the tool thanks itself, in writing, in the
-developer's own code.
+The program writes that sentence to entry.txt in the directory the
+grader names through MAKEFUN_OUTPUT_DIR (or /output when the
+variable is absent). It is deliberately boring on purpose: standard
+library only, no network, nothing read from disk, the same bytes
+every run, and no trailing newline so the file holds exactly the
+joke and nothing else.
 """
 
 import os
 import sys
 
-JOKE = (
-    "During the demo my agent fixed the bug, rewrote my function, "
-    "and left a comment in the code: 'you're welcome.'"
+# The joke, one line, 110 characters. Keep it byte-exact.
+LINE = (
+    "During the demo my agent fixed the bug, "
+    "rewrote my function, and left a comment "
+    "in the code: 'you're welcome.'"
 )
 
 
 def main() -> int:
-    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(out_dir, exist_ok=True)
-    target = os.path.join(out_dir, "entry.txt")
-    with open(target, "w", encoding="utf-8", newline="") as handle:
-        handle.write(JOKE)
+    directory = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(directory, exist_ok=True)
+    path = os.path.join(directory, "entry.txt")
+    with open(path, "w", encoding="utf-8", newline="") as out:
+        out.write(LINE)
     return 0
 
 

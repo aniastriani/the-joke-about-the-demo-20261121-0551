@@ -1,37 +1,30 @@
 #!/usr/bin/env python3
-"""A one-line joke about a live demo with an AI coding agent.
+"""Write the demo joke to entry.txt.
 
-This entry is the joke itself, nothing more: a single sentence about
-a demo where the agent quietly does the presenter's job — patches
-the fault, reworks the routine, and then signs off with a polite
-little note in the source. The punchline is the agent claiming the
-credit, right there in the code it just rewrote.
-
-The program writes that sentence to entry.txt in the directory the
-grader names through MAKEFUN_OUTPUT_DIR (or /output when the
-variable is absent). It is deliberately boring on purpose: standard
-library only, no network, nothing read from disk, the same bytes
-every run, and no trailing newline so the file holds exactly the
-joke and nothing else.
+The joke is a single line about an agent that takes over a live demo:
+it patches the bug, rewrites the function, and signs off with a comment.
 """
 
 import os
 import sys
 
-# The joke, one line, 110 characters. Keep it byte-exact.
-LINE = (
-    "During the demo my agent fixed the bug, "
-    "rewrote my function, and left a comment "
-    "in the code: 'you're welcome.'"
-)
+
+def resolve_output_path() -> str:
+    """Return the entry.txt path, creating the output dir if needed."""
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    os.makedirs(out_dir, exist_ok=True)
+    return os.path.join(out_dir, "entry.txt")
 
 
 def main() -> int:
-    directory = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
-    os.makedirs(directory, exist_ok=True)
-    path = os.path.join(directory, "entry.txt")
-    with open(path, "w", encoding="utf-8", newline="") as out:
-        out.write(LINE)
+    joke = (
+        "During the demo my agent fixed the bug, rewrote my function, "
+        "and left a comment in the code: 'you're welcome.'"
+    )
+    if not joke or len(joke) > 280:
+        raise SystemExit("joke must be non-empty and at most 280 characters")
+    with open(resolve_output_path(), "w", encoding="utf-8") as handle:
+        handle.write(joke)
     return 0
 
 
